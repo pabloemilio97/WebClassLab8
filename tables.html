@@ -67,13 +67,36 @@
 
 </body>
 
-
-<!-- BELOW CODE IS CRITICAL. IT HANDLES HOW FORM DATA IS LOADED FROM OUR SERVER -->
 <script type="text/javascript">
+  function getData() {
+    $.get("/api/tables", function(data) {
+      for(var i=0; i < data.length; i++) {
+        $("#tableList").append(`<div class="element">
+            <h2>Table #${i+1}</h2>
+            <hr>
+            <h2>ID: #${data[i].uid}</h2>
+            <h2>Name: #${data[i].name}</h2>
+            <h2>Email: #${data[i].email}</h2>
+            <h2>Phone: #${data[i].phone}</h2>
+        </div>`);
+      }
+    });
 
+    $.get("/api/waitlist", function(data) {
+      for(var i=0; i < data.length; i++) {
+        $("#waitList").append(`<div class="element">
+            <h2>Table #${i+1}</h2>
+            <hr>
+            <h2>ID: #${data[i].uid}</h2>
+            <h2>Name: #${data[i].name}</h2>
+            <h2>Email: #${data[i].email}</h2>
+            <h2>Phone: #${data[i].phone}</h2>
+        </div>`);
+      }
+    });
+  }
 
-
-
+  getData();
 </script>
 
 </html>
